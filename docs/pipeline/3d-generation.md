@@ -176,6 +176,17 @@ Configure 3D generation via `configs/3d_generation.yaml`:
 
 For detailed API documentation, see the [3D Generation API Reference](../api/3d-generation.md).
 
+## Research and State-of-the-Art Methods
+
+For comprehensive information on the latest research in 3D reconstruction, including:
+
+- Neural Radiance Fields (NeRF) methods
+- 3D Gaussian Splatting techniques
+- Diffusion-based approaches
+- Monocular depth estimation models
+
+See the [Research References](../references.md) page for papers, code repositories, and detailed comparisons of state-of-the-art methods.
+
 ## Next Steps
 
 After generating 3D models, move on to [Synthetic Rendering](synthetic-rendering.md) to create synthetic images.

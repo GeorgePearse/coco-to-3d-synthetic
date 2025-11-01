@@ -39,6 +39,7 @@ graph LR
 - [Quick Start Tutorial](getting-started/quickstart.md)
 - [Pipeline Overview](pipeline/overview.md)
 - [API Reference](api/coco-processing.md)
+- [Research References](references.md) - SOTA methods for NeRF and Gaussian Splatting
 
 ## Project Structure
 

@@ -44,3 +44,6 @@ data/synthetic_images/*.png
 # OS
 .DS_Store
 Thumbs.db
+
+# MkDocs
+site/

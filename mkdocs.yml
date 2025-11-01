@@ -46,6 +46,7 @@ nav:
     - 3D Generation: api/3d-generation.md
     - Synthetic Rendering: api/synthetic-rendering.md
   - Examples: examples.md
+  - References: references.md
   - Contributing: contributing.md
 
 markdown_extensions:
