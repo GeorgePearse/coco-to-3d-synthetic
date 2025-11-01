@@ -1,0 +1,2755 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Pipeline for converting COCO instance annotations to 3D models and generating synthetic images">
+      
+      
+        <meta name="author" content="George Pearse">
+      
+      
+        <link rel="canonical" href="https://georgepearse.github.io/coco-to-3d-synthetic/references/">
+      
+      
+        <link rel="prev" href="../examples/">
+      
+      
+        <link rel="next" href="../contributing/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>References - COCO to 3D Synthetic Pipeline</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#research-references" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="COCO to 3D Synthetic Pipeline" class="md-header__button md-logo" aria-label="COCO to 3D Synthetic Pipeline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            COCO to 3D Synthetic Pipeline
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              References
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GeorgePearse/coco-to-3d-synthetic" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GeorgePearse/coco-to-3d-synthetic
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/installation/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../pipeline/overview/" class="md-tabs__link">
+          
+  
+  
+  Pipeline
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/coco-processing/" class="md-tabs__link">
+          
+  
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  References
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="COCO to 3D Synthetic Pipeline" class="md-nav__button md-logo" aria-label="COCO to 3D Synthetic Pipeline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    COCO to 3D Synthetic Pipeline
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GeorgePearse/coco-to-3d-synthetic" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GeorgePearse/coco-to-3d-synthetic
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Pipeline
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Pipeline
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/coco-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    COCO Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/3d-generation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3D Generation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/synthetic-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Synthetic Rendering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/coco-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    COCO Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/3d-generation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3D Generation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/synthetic-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Synthetic Rendering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    References
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    References
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#neural-radiance-fields-nerf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Neural Radiance Fields (NeRF)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Neural Radiance Fields (NeRF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      2020
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2020">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nerf-representing-scenes-as-neural-radiance-fields-for-view-synthesis-eccv-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis (ECCV 2020)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      2021
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2021">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pixelnerf-neural-radiance-fields-from-one-or-few-images-cvpr-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      pixelNeRF: Neural Radiance Fields from One or Few Images (CVPR 2021)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mip-nerf-a-multiscale-representation-for-anti-aliasing-neural-radiance-fields-iccv-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields (ICCV 2021)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#barf-bundle-adjusting-neural-radiance-fields-iccv-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      BARF: Bundle-Adjusting Neural Radiance Fields (ICCV 2021)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      2022
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2022">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instant-neural-graphics-primitives-instant-ngp-siggraph-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instant Neural Graphics Primitives (Instant-NGP) (SIGGRAPH 2022)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mip-nerf-360-unbounded-anti-aliased-neural-radiance-fields-cvpr-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mip-NeRF 360: Unbounded Anti-Aliased Neural Radiance Fields (CVPR 2022)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorf-tensorial-radiance-fields-eccv-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      TensoRF: Tensorial Radiance Fields (ECCV 2022)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nerf-studio-a-framework-for-neural-radiance-field-development-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      NeRF-Studio: A Framework for Neural Radiance Field Development (2022)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      2023
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2023">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zip-nerf-anti-aliased-grid-based-neural-radiance-fields-iccv-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zip-NeRF: Anti-Aliased Grid-Based Neural Radiance Fields (ICCV 2023)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k-planes-explicit-radiance-fields-in-space-time-and-appearance-cvpr-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      K-Planes: Explicit Radiance Fields in Space, Time, and Appearance (CVPR 2023)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nerf-vae-a-geometry-aware-3d-scene-generative-model-icml-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      NeRF-VAE: A Geometry Aware 3D Scene Generative Model (ICML 2023)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lrm-large-reconstruction-model-for-single-image-to-3d-iclr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      LRM: Large Reconstruction Model for Single Image to 3D (ICLR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssdnerf-semantic-aware-single-stage-diffusion-nerf-apple-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSDNeRF: Semantic-aware Single-stage Diffusion NeRF (Apple, 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mvdream-multi-view-diffusion-for-3d-generation-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      MVDream: Multi-view Diffusion for 3D Generation (2024)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3d-gaussian-splatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Gaussian Splatting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3D Gaussian Splatting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2023_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2023
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2023">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3d-gaussian-splatting-for-real-time-radiance-field-rendering-siggraph-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Gaussian Splatting for Real-Time Radiance Field Rendering (SIGGRAPH 2023)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2024_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#splatter-image-ultra-fast-single-view-3d-reconstruction-cvpr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splatter Image: Ultra-Fast Single-View 3D Reconstruction (CVPR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instantmesh-efficient-3d-mesh-generation-from-a-single-image-with-sparse-view-large-reconstruction-models-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      InstantMesh: Efficient 3D Mesh Generation from a Single Image with Sparse-view Large Reconstruction Models (2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#humansplat-generalizable-single-image-human-gaussian-splatting-with-structure-priors-neurips-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      HumanSplat: Generalizable Single-Image Human Gaussian Splatting with Structure Priors (NeurIPS 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fdgaussian-fast-gaussian-splatting-from-single-image-via-geometric-aware-diffusion-model-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      FDGaussian: Fast Gaussian Splatting from Single Image via Geometric-aware Diffusion Model (2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lgm-large-multi-view-gaussian-model-for-high-resolution-3d-content-creation-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      LGM: Large Multi-View Gaussian Model for High-Resolution 3D Content Creation (2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gsd-view-guided-gaussian-splatting-diffusion-for-3d-reconstruction-eccv-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      GSD: View-Guided Gaussian Splatting Diffusion for 3D Reconstruction (ECCV 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triposr-fast-3d-object-reconstruction-from-a-single-image-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      TripoSR: Fast 3D Object Reconstruction from a Single Image (2024)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hybrid-diffusion-based-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hybrid &amp; Diffusion-Based Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hybrid &amp; Diffusion-Based Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2022_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2022
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2022">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dreamfusion-text-to-3d-using-2d-diffusion-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      DreamFusion: Text-to-3D using 2D Diffusion (2022)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2023_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2023
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2023">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#magic3d-high-resolution-text-to-3d-content-creation-cvpr-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      Magic3D: High-Resolution Text-to-3D Content Creation (CVPR 2023)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero-1-to-3-zero-shot-one-image-to-3d-object-iccv-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zero-1-to-3: Zero-shot One Image to 3D Object (ICCV 2023)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stable-zero123-stability-ai-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stable Zero123 (Stability AI, 2023)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2024_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wonder3d-single-image-to-3d-using-cross-domain-diffusion-cvpr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wonder3D: Single Image to 3D using Cross-Domain Diffusion (CVPR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique3d-high-quality-and-efficient-3d-mesh-generation-from-a-single-image-neurips-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unique3D: High-Quality and Efficient 3D Mesh Generation from a Single Image (NeurIPS 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crm-convolutional-reconstruction-model-eccv-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      CRM: Convolutional Reconstruction Model (ECCV 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sith-single-view-textured-human-reconstruction-with-image-conditioned-diffusion-cvpr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      SiTH: Single-view Textured Human Reconstruction with Image-Conditioned Diffusion (CVPR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#syncdreamer-generating-multiview-consistent-images-from-a-single-view-image-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      SyncDreamer: Generating Multiview-Consistent Images from a Single-View Image (2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-2-3-45-any-single-image-to-3d-mesh-in-45-seconds-neurips-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      One-2-3-45: Any Single Image to 3D Mesh in 45 Seconds (NeurIPS 2023)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monocular-depth-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monocular Depth Estimation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monocular Depth Estimation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2024-state-of-the-art" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024 State-of-the-Art
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024 State-of-the-Art">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#depth-anything-unleashing-the-power-of-large-scale-unlabeled-data-cvpr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data (CVPR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#depth-pro-sharp-monocular-metric-depth-in-less-than-a-second-apple-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Depth Pro: Sharp Monocular Metric Depth in Less Than a Second (Apple, 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metric3d-v2-a-versatile-monocular-geometric-foundation-model-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metric3D v2: A Versatile Monocular Geometric Foundation Model (2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#midas-v31-towards-robust-monocular-depth-estimation-2022-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      MiDaS v3.1: Towards Robust Monocular Depth Estimation (2022-2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dpt-vision-transformers-for-dense-prediction-iccv-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      DPT: Vision Transformers for Dense Prediction (ICCV 2021)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-view-stereo-and-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-View Stereo and Matching
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-View Stereo and Matching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2024_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dust3r-geometric-3d-vision-made-easy-cvpr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      DUSt3R: Geometric 3D Vision Made Easy (CVPR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mast3r-matching-and-stereo-3d-reconstruction-eccv-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      MASt3R: Matching and Stereo 3D Reconstruction (ECCV 2024)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-specific-reconstruction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Human-Specific Reconstruction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Human-Specific Reconstruction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2019-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      2019-2020
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2019-2020">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pifu-pixel-aligned-implicit-function-for-high-resolution-clothed-human-digitization-iccv-2019" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIFu: Pixel-Aligned Implicit Function for High-Resolution Clothed Human Digitization (ICCV 2019)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pifuhd-multi-level-pixel-aligned-implicit-function-for-high-resolution-3d-human-digitization-cvpr-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIFuHD: Multi-Level Pixel-Aligned Implicit Function for High-Resolution 3D Human Digitization (CVPR 2020)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frameworks-and-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frameworks and Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datasets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benchmarks-and-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benchmarks and Challenges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latest-trends-2024-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      Latest Trends (2024-2025)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#neural-radiance-fields-nerf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Neural Radiance Fields (NeRF)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Neural Radiance Fields (NeRF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      2020
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2020">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nerf-representing-scenes-as-neural-radiance-fields-for-view-synthesis-eccv-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis (ECCV 2020)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      2021
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2021">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pixelnerf-neural-radiance-fields-from-one-or-few-images-cvpr-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      pixelNeRF: Neural Radiance Fields from One or Few Images (CVPR 2021)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mip-nerf-a-multiscale-representation-for-anti-aliasing-neural-radiance-fields-iccv-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields (ICCV 2021)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#barf-bundle-adjusting-neural-radiance-fields-iccv-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      BARF: Bundle-Adjusting Neural Radiance Fields (ICCV 2021)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      2022
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2022">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instant-neural-graphics-primitives-instant-ngp-siggraph-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instant Neural Graphics Primitives (Instant-NGP) (SIGGRAPH 2022)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mip-nerf-360-unbounded-anti-aliased-neural-radiance-fields-cvpr-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mip-NeRF 360: Unbounded Anti-Aliased Neural Radiance Fields (CVPR 2022)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorf-tensorial-radiance-fields-eccv-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      TensoRF: Tensorial Radiance Fields (ECCV 2022)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nerf-studio-a-framework-for-neural-radiance-field-development-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      NeRF-Studio: A Framework for Neural Radiance Field Development (2022)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      2023
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2023">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zip-nerf-anti-aliased-grid-based-neural-radiance-fields-iccv-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zip-NeRF: Anti-Aliased Grid-Based Neural Radiance Fields (ICCV 2023)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k-planes-explicit-radiance-fields-in-space-time-and-appearance-cvpr-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      K-Planes: Explicit Radiance Fields in Space, Time, and Appearance (CVPR 2023)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nerf-vae-a-geometry-aware-3d-scene-generative-model-icml-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      NeRF-VAE: A Geometry Aware 3D Scene Generative Model (ICML 2023)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lrm-large-reconstruction-model-for-single-image-to-3d-iclr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      LRM: Large Reconstruction Model for Single Image to 3D (ICLR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssdnerf-semantic-aware-single-stage-diffusion-nerf-apple-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSDNeRF: Semantic-aware Single-stage Diffusion NeRF (Apple, 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mvdream-multi-view-diffusion-for-3d-generation-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      MVDream: Multi-view Diffusion for 3D Generation (2024)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3d-gaussian-splatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Gaussian Splatting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3D Gaussian Splatting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2023_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2023
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2023">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3d-gaussian-splatting-for-real-time-radiance-field-rendering-siggraph-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Gaussian Splatting for Real-Time Radiance Field Rendering (SIGGRAPH 2023)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2024_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#splatter-image-ultra-fast-single-view-3d-reconstruction-cvpr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splatter Image: Ultra-Fast Single-View 3D Reconstruction (CVPR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instantmesh-efficient-3d-mesh-generation-from-a-single-image-with-sparse-view-large-reconstruction-models-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      InstantMesh: Efficient 3D Mesh Generation from a Single Image with Sparse-view Large Reconstruction Models (2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#humansplat-generalizable-single-image-human-gaussian-splatting-with-structure-priors-neurips-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      HumanSplat: Generalizable Single-Image Human Gaussian Splatting with Structure Priors (NeurIPS 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fdgaussian-fast-gaussian-splatting-from-single-image-via-geometric-aware-diffusion-model-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      FDGaussian: Fast Gaussian Splatting from Single Image via Geometric-aware Diffusion Model (2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lgm-large-multi-view-gaussian-model-for-high-resolution-3d-content-creation-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      LGM: Large Multi-View Gaussian Model for High-Resolution 3D Content Creation (2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gsd-view-guided-gaussian-splatting-diffusion-for-3d-reconstruction-eccv-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      GSD: View-Guided Gaussian Splatting Diffusion for 3D Reconstruction (ECCV 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triposr-fast-3d-object-reconstruction-from-a-single-image-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      TripoSR: Fast 3D Object Reconstruction from a Single Image (2024)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hybrid-diffusion-based-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hybrid &amp; Diffusion-Based Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hybrid &amp; Diffusion-Based Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2022_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2022
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2022">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dreamfusion-text-to-3d-using-2d-diffusion-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      DreamFusion: Text-to-3D using 2D Diffusion (2022)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2023_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2023
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2023">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#magic3d-high-resolution-text-to-3d-content-creation-cvpr-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      Magic3D: High-Resolution Text-to-3D Content Creation (CVPR 2023)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero-1-to-3-zero-shot-one-image-to-3d-object-iccv-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zero-1-to-3: Zero-shot One Image to 3D Object (ICCV 2023)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stable-zero123-stability-ai-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stable Zero123 (Stability AI, 2023)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2024_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wonder3d-single-image-to-3d-using-cross-domain-diffusion-cvpr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wonder3D: Single Image to 3D using Cross-Domain Diffusion (CVPR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique3d-high-quality-and-efficient-3d-mesh-generation-from-a-single-image-neurips-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unique3D: High-Quality and Efficient 3D Mesh Generation from a Single Image (NeurIPS 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crm-convolutional-reconstruction-model-eccv-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      CRM: Convolutional Reconstruction Model (ECCV 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sith-single-view-textured-human-reconstruction-with-image-conditioned-diffusion-cvpr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      SiTH: Single-view Textured Human Reconstruction with Image-Conditioned Diffusion (CVPR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#syncdreamer-generating-multiview-consistent-images-from-a-single-view-image-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      SyncDreamer: Generating Multiview-Consistent Images from a Single-View Image (2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-2-3-45-any-single-image-to-3d-mesh-in-45-seconds-neurips-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      One-2-3-45: Any Single Image to 3D Mesh in 45 Seconds (NeurIPS 2023)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monocular-depth-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monocular Depth Estimation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monocular Depth Estimation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2024-state-of-the-art" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024 State-of-the-Art
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024 State-of-the-Art">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#depth-anything-unleashing-the-power-of-large-scale-unlabeled-data-cvpr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data (CVPR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#depth-pro-sharp-monocular-metric-depth-in-less-than-a-second-apple-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Depth Pro: Sharp Monocular Metric Depth in Less Than a Second (Apple, 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metric3d-v2-a-versatile-monocular-geometric-foundation-model-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metric3D v2: A Versatile Monocular Geometric Foundation Model (2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#midas-v31-towards-robust-monocular-depth-estimation-2022-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      MiDaS v3.1: Towards Robust Monocular Depth Estimation (2022-2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dpt-vision-transformers-for-dense-prediction-iccv-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      DPT: Vision Transformers for Dense Prediction (ICCV 2021)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-view-stereo-and-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-View Stereo and Matching
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-View Stereo and Matching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2024_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dust3r-geometric-3d-vision-made-easy-cvpr-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      DUSt3R: Geometric 3D Vision Made Easy (CVPR 2024)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mast3r-matching-and-stereo-3d-reconstruction-eccv-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      MASt3R: Matching and Stereo 3D Reconstruction (ECCV 2024)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-specific-reconstruction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Human-Specific Reconstruction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Human-Specific Reconstruction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2019-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      2019-2020
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2019-2020">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pifu-pixel-aligned-implicit-function-for-high-resolution-clothed-human-digitization-iccv-2019" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIFu: Pixel-Aligned Implicit Function for High-Resolution Clothed Human Digitization (ICCV 2019)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pifuhd-multi-level-pixel-aligned-implicit-function-for-high-resolution-3d-human-digitization-cvpr-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIFuHD: Multi-Level Pixel-Aligned Implicit Function for High-Resolution 3D Human Digitization (CVPR 2020)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frameworks-and-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frameworks and Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datasets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benchmarks-and-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benchmarks and Challenges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latest-trends-2024-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      Latest Trends (2024-2025)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="research-references">Research References</h1>
+<p>State-of-the-art methods in 3D reconstruction, Neural Radiance Fields (NeRF), and 3D Gaussian Splatting organized chronologically.</p>
+<hr />
+<h2 id="neural-radiance-fields-nerf">Neural Radiance Fields (NeRF)</h2>
+<h3 id="2020">2020</h3>
+<h4 id="nerf-representing-scenes-as-neural-radiance-fields-for-view-synthesis-eccv-2020"><strong>NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis</strong> (ECCV 2020)</h4>
+<ul>
+<li><strong>Authors</strong>: Ben Mildenhall, et al. (UC Berkeley, Google Research, UCSD)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2003.08934">arXiv:2003.08934</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/bmild/nerf">bmild/nerf</a></li>
+<li><strong>Project</strong>: <a href="https://www.matthewtancik.com/nerf">nerf-website</a></li>
+<li><strong>Description</strong>: The foundational paper that introduced Neural Radiance Fields. Represents scenes as continuous 5D functions (3D location + 2D viewing direction) optimized with volume rendering. Achieves photorealistic novel view synthesis but requires long training times (hours to days).</li>
+</ul>
+<hr />
+<h3 id="2021">2021</h3>
+<h4 id="pixelnerf-neural-radiance-fields-from-one-or-few-images-cvpr-2021"><strong>pixelNeRF: Neural Radiance Fields from One or Few Images</strong> (CVPR 2021)</h4>
+<ul>
+<li><strong>Authors</strong>: Alex Yu, et al. (UC Berkeley)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2012.02190">arXiv:2012.02190</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/sxyu/pixel-nerf">sxyu/pixel-nerf</a></li>
+<li><strong>Description</strong>: Extends NeRF to work with one or few input images by conditioning on image features. Uses a fully-convolutional architecture that can generalize to novel scenes without per-scene optimization.</li>
+</ul>
+<h4 id="mip-nerf-a-multiscale-representation-for-anti-aliasing-neural-radiance-fields-iccv-2021"><strong>Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields</strong> (ICCV 2021)</h4>
+<ul>
+<li><strong>Authors</strong>: Jonathan T. Barron, et al. (Google Research)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2103.13415">arXiv:2103.13415</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/google/mipnerf">google/mipnerf</a></li>
+<li><strong>Description</strong>: Addresses aliasing artifacts in NeRF by reasoning about conical frustums instead of rays. Significantly improves rendering quality, especially when rendering at different scales.</li>
+</ul>
+<h4 id="barf-bundle-adjusting-neural-radiance-fields-iccv-2021"><strong>BARF: Bundle-Adjusting Neural Radiance Fields</strong> (ICCV 2021)</h4>
+<ul>
+<li><strong>Authors</strong>: Chen-Hsuan Lin, et al. (CMU, Meta AI)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2104.06405">arXiv:2104.06405</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/chenhsuanlin/bundle-adjusting-NeRF">chenhsuanlin/bundle-adjusting-NeRF</a></li>
+<li><strong>Description</strong>: Jointly optimizes NeRF and camera poses without requiring accurate camera calibration. Enables NeRF training from imperfect camera poses.</li>
+</ul>
+<hr />
+<h3 id="2022">2022</h3>
+<h4 id="instant-neural-graphics-primitives-instant-ngp-siggraph-2022"><strong>Instant Neural Graphics Primitives (Instant-NGP)</strong> (SIGGRAPH 2022)</h4>
+<ul>
+<li><strong>Authors</strong>: Thomas Müller, et al. (NVIDIA)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2201.05989">arXiv:2201.05989</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/NVlabs/instant-ngp">NVlabs/instant-ngp</a></li>
+<li><strong>Description</strong>: Revolutionized NeRF training speed using multiresolution hash encoding. Reduces training time from hours to seconds while maintaining high quality. Includes CUDA implementation for real-time performance.</li>
+</ul>
+<h4 id="mip-nerf-360-unbounded-anti-aliased-neural-radiance-fields-cvpr-2022"><strong>Mip-NeRF 360: Unbounded Anti-Aliased Neural Radiance Fields</strong> (CVPR 2022)</h4>
+<ul>
+<li><strong>Authors</strong>: Jonathan T. Barron, et al. (Google Research)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2111.12077">arXiv:2111.12077</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/google-research/multinerf">google-research/multinerf</a></li>
+<li><strong>Description</strong>: Extends Mip-NeRF to unbounded 360-degree scenes. Uses non-linear scene parameterization and online distillation for high-quality unbounded scene reconstruction.</li>
+</ul>
+<h4 id="tensorf-tensorial-radiance-fields-eccv-2022"><strong>TensoRF: Tensorial Radiance Fields</strong> (ECCV 2022)</h4>
+<ul>
+<li><strong>Authors</strong>: Anpei Chen, et al. (UCLA, Meta Reality Labs)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2203.09517">arXiv:2203.09517</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/apchenstu/TensoRF">apchenstu/TensoRF</a></li>
+<li><strong>Description</strong>: Models radiance fields as 4D tensors factorized into compact components. Achieves faster reconstruction with lower memory footprint compared to vanilla NeRF.</li>
+</ul>
+<h4 id="nerf-studio-a-framework-for-neural-radiance-field-development-2022"><strong>NeRF-Studio: A Framework for Neural Radiance Field Development</strong> (2022)</h4>
+<ul>
+<li><strong>Authors</strong>: Matthew Tancik, et al. (UC Berkeley, Luma AI)</li>
+<li><strong>Code</strong>: <a href="https://github.com/nerfstudio-project/nerfstudio">nerfstudio-project/nerfstudio</a></li>
+<li><strong>Website</strong>: <a href="https://docs.nerf.studio/">nerf.studio</a></li>
+<li><strong>Description</strong>: Modular framework for NeRF research and development. Provides viewer, training infrastructure, and implementations of multiple NeRF variants. Industry-standard tool for NeRF experimentation.</li>
+</ul>
+<hr />
+<h3 id="2023">2023</h3>
+<h4 id="zip-nerf-anti-aliased-grid-based-neural-radiance-fields-iccv-2023"><strong>Zip-NeRF: Anti-Aliased Grid-Based Neural Radiance Fields</strong> (ICCV 2023)</h4>
+<ul>
+<li><strong>Authors</strong>: Jonathan T. Barron, et al. (Google Research)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2304.06706">arXiv:2304.06706</a></li>
+<li><strong>Description</strong>: Combines hash grids (Instant-NGP) with anti-aliasing (Mip-NeRF) for fast, high-quality reconstruction. Achieves state-of-the-art quality with efficient training times.</li>
+</ul>
+<h4 id="k-planes-explicit-radiance-fields-in-space-time-and-appearance-cvpr-2023"><strong>K-Planes: Explicit Radiance Fields in Space, Time, and Appearance</strong> (CVPR 2023)</h4>
+<ul>
+<li><strong>Authors</strong>: Sara Fridovich-Keil, et al. (UC Berkeley, Meta AI)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2301.10241">arXiv:2301.10241</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/sarafridov/K-Planes">sarafridov/K-Planes</a></li>
+<li><strong>Description</strong>: Factorizes 4D spacetime into six planes for efficient dynamic scene reconstruction. Enables modeling of time-varying scenes with explicit grid-based representation.</li>
+</ul>
+<h4 id="nerf-vae-a-geometry-aware-3d-scene-generative-model-icml-2023"><strong>NeRF-VAE: A Geometry Aware 3D Scene Generative Model</strong> (ICML 2023)</h4>
+<ul>
+<li><strong>Authors</strong>: Adam R. Kosiorek, et al. (DeepMind)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2104.00587">arXiv:2104.00587</a></li>
+<li><strong>Description</strong>: Combines NeRF with variational autoencoders for generative 3D scene modeling. Learns disentangled representations of scene geometry and appearance.</li>
+</ul>
+<hr />
+<h3 id="2024">2024</h3>
+<h4 id="lrm-large-reconstruction-model-for-single-image-to-3d-iclr-2024"><strong>LRM: Large Reconstruction Model for Single Image to 3D</strong> (ICLR 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Yicong Hong, et al. (NVIDIA, Meta AI, University of Hong Kong)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2311.04400">arXiv:2311.04400</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/3DTopia/OpenLRM">3DTopia/OpenLRM</a> (open-source implementation)</li>
+<li><strong>Description</strong>: 500M parameter transformer that predicts triplane NeRF from single images in ~5 seconds. Trained on 1M+ objects from Objaverse. State-of-the-art for fast single-image 3D reconstruction.</li>
+</ul>
+<h4 id="ssdnerf-semantic-aware-single-stage-diffusion-nerf-apple-2024"><strong>SSDNeRF: Semantic-aware Single-stage Diffusion NeRF</strong> (Apple, 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Apple Research</li>
+<li><strong>Paper</strong>: <a href="https://machinelearning.apple.com/research/ssdnerf">Research paper</a></li>
+<li><strong>Description</strong>: Unified single-stage training approach combining diffusion models with NeRF. End-to-end optimization for high-quality 3D generation with semantic awareness.</li>
+</ul>
+<h4 id="mvdream-multi-view-diffusion-for-3d-generation-2024"><strong>MVDream: Multi-view Diffusion for 3D Generation</strong> (2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Yichun Shi, et al. (ByteDance)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2308.16512">arXiv:2308.16512</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/bytedance/MVDream">bytedance/MVDream</a></li>
+<li><strong>Description</strong>: Multi-view consistent diffusion model for text-to-3D. Trained on both 2D and 3D data to ensure view consistency during generation.</li>
+</ul>
+<hr />
+<h2 id="3d-gaussian-splatting">3D Gaussian Splatting</h2>
+<h3 id="2023_1">2023</h3>
+<h4 id="3d-gaussian-splatting-for-real-time-radiance-field-rendering-siggraph-2023"><strong>3D Gaussian Splatting for Real-Time Radiance Field Rendering</strong> (SIGGRAPH 2023)</h4>
+<ul>
+<li><strong>Authors</strong>: Bernhard Kerbl, et al. (Inria, Max Planck Institut)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2308.04079">arXiv:2308.04079</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/graphdeco-inria/gaussian-splatting">graphdeco-inria/gaussian-splatting</a></li>
+<li><strong>Project</strong>: <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/">gaussian-splatting-project</a></li>
+<li><strong>Description</strong>: Groundbreaking method representing scenes as 3D Gaussians instead of neural networks. Achieves real-time rendering (100+ FPS) with quality comparable to NeRF. Revolutionized real-time 3D reconstruction.</li>
+</ul>
+<hr />
+<h3 id="2024_1">2024</h3>
+<h4 id="splatter-image-ultra-fast-single-view-3d-reconstruction-cvpr-2024"><strong>Splatter Image: Ultra-Fast Single-View 3D Reconstruction</strong> (CVPR 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Stanislaw Szymanowicz, et al. (University of Oxford, Niantic)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2312.13150">arXiv:2312.13150</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/szymanowiczs/splatter-image">szymanowiczs/splatter-image</a></li>
+<li><strong>Description</strong>: Maps single image pixels directly to 3D Gaussians using feed-forward network. Ultra-fast inference for real-time single-view 3D reconstruction.</li>
+</ul>
+<h4 id="instantmesh-efficient-3d-mesh-generation-from-a-single-image-with-sparse-view-large-reconstruction-models-2024"><strong>InstantMesh: Efficient 3D Mesh Generation from a Single Image with Sparse-view Large Reconstruction Models</strong> (2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Jiale Xu, et al. (Tencent ARC Lab)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2404.07191">arXiv:2404.07191</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/TencentARC/InstantMesh">TencentARC/InstantMesh</a></li>
+<li><strong>Description</strong>: Combines multiview diffusion with sparse-view reconstruction for high-quality textured meshes in ~10 seconds. Superior geometry and texture quality compared to earlier feed-forward methods.</li>
+</ul>
+<h4 id="humansplat-generalizable-single-image-human-gaussian-splatting-with-structure-priors-neurips-2024"><strong>HumanSplat: Generalizable Single-Image Human Gaussian Splatting with Structure Priors</strong> (NeurIPS 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Panwang Pan, et al.</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2406.12459">arXiv:2406.12459</a></li>
+<li><strong>Project</strong>: <a href="https://humansplat.github.io/">humansplat.github.io</a></li>
+<li><strong>Description</strong>: Human-specific Gaussian Splatting using structure priors for anatomically correct reconstruction. State-of-the-art for single-image human digitization with photorealistic novel views.</li>
+</ul>
+<h4 id="fdgaussian-fast-gaussian-splatting-from-single-image-via-geometric-aware-diffusion-model-2024"><strong>FDGaussian: Fast Gaussian Splatting from Single Image via Geometric-aware Diffusion Model</strong> (2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Qijun Feng, et al.</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2403.10242">arXiv:2403.10242</a></li>
+<li><strong>Description</strong>: Combines geometry-aware diffusion with Gaussian Splatting. Uses orthogonal plane decomposition and epipolar attention for view-consistent multi-view synthesis.</li>
+</ul>
+<h4 id="lgm-large-multi-view-gaussian-model-for-high-resolution-3d-content-creation-2024"><strong>LGM: Large Multi-View Gaussian Model for High-Resolution 3D Content Creation</strong> (2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Jiaxiang Tang, et al.</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2402.05054">arXiv:2402.05054</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/3DTopia/LGM">3DTopia/LGM</a></li>
+<li><strong>Description</strong>: Multi-view Gaussian reconstruction model that replaces memory-intensive volume rendering. Fast rendering but with some multi-view inconsistency challenges.</li>
+</ul>
+<h4 id="gsd-view-guided-gaussian-splatting-diffusion-for-3d-reconstruction-eccv-2024"><strong>GSD: View-Guided Gaussian Splatting Diffusion for 3D Reconstruction</strong> (ECCV 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Yuxuan Mu, et al.</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2407.04237">arXiv:2407.04237</a></li>
+<li><strong>Description</strong>: Integrates diffusion models with Gaussian Splatting for high-quality object reconstruction. View-guided approach ensures consistency across generated views.</li>
+</ul>
+<h4 id="triposr-fast-3d-object-reconstruction-from-a-single-image-2024"><strong>TripoSR: Fast 3D Object Reconstruction from a Single Image</strong> (2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Stability AI, Tripo AI</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2403.02151">arXiv:2403.02151</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/VAST-AI-Research/TripoSR">VAST-AI-Research/TripoSR</a></li>
+<li><strong>Description</strong>: Feed-forward 3D reconstruction model generating meshes in &lt;0.5 seconds on A100. MIT licensed for commercial use. Excellent speed/quality balance for production use.</li>
+</ul>
+<hr />
+<h2 id="hybrid-diffusion-based-methods">Hybrid &amp; Diffusion-Based Methods</h2>
+<h3 id="2022_1">2022</h3>
+<h4 id="dreamfusion-text-to-3d-using-2d-diffusion-2022"><strong>DreamFusion: Text-to-3D using 2D Diffusion</strong> (2022)</h4>
+<ul>
+<li><strong>Authors</strong>: Ben Poole, et al. (Google Research, UC Berkeley)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2209.14988">arXiv:2209.14988</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/ashawkey/stable-dreamfusion">ashawkey/stable-dreamfusion</a> (unofficial)</li>
+<li><strong>Description</strong>: Pioneering text-to-3D method using Score Distillation Sampling (SDS) with 2D diffusion models as priors. Slow (~1.5 hours) but opened new research direction for text-to-3D generation.</li>
+</ul>
+<hr />
+<h3 id="2023_2">2023</h3>
+<h4 id="magic3d-high-resolution-text-to-3d-content-creation-cvpr-2023"><strong>Magic3D: High-Resolution Text-to-3D Content Creation</strong> (CVPR 2023)</h4>
+<ul>
+<li><strong>Authors</strong>: Chen-Hsuan Lin, et al. (NVIDIA)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2211.10440">arXiv:2211.10440</a></li>
+<li><strong>Description</strong>: Two-stage coarse-to-fine text-to-3D optimization. Achieves 2x faster generation and 8x higher resolution than DreamFusion through sparse 3D hash grid and differentiable rendering.</li>
+</ul>
+<h4 id="zero-1-to-3-zero-shot-one-image-to-3d-object-iccv-2023"><strong>Zero-1-to-3: Zero-shot One Image to 3D Object</strong> (ICCV 2023)</h4>
+<ul>
+<li><strong>Authors</strong>: Ruoshi Liu, et al. (Columbia University)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2303.11328">arXiv:2303.11328</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/cvlab-columbia/zero123">cvlab-columbia/zero123</a></li>
+<li><strong>Description</strong>: Diffusion model for novel view synthesis from single image with camera control. Enables controllable view generation for 3D reconstruction pipelines.</li>
+</ul>
+<h4 id="stable-zero123-stability-ai-2023"><strong>Stable Zero123</strong> (Stability AI, 2023)</h4>
+<ul>
+<li><strong>Model</strong>: <a href="https://huggingface.co/stabilityai/stable-zero123">stabilityai/stable-zero123</a></li>
+<li><strong>Description</strong>: Improved version of Zero-1-to-3 with better training data and elevation conditioning. Open-source on Hugging Face, integrated with threestudio framework.</li>
+</ul>
+<hr />
+<h3 id="2024_2">2024</h3>
+<h4 id="wonder3d-single-image-to-3d-using-cross-domain-diffusion-cvpr-2024"><strong>Wonder3D: Single Image to 3D using Cross-Domain Diffusion</strong> (CVPR 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Xiaoxiao Long, et al.</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2310.15008">arXiv:2310.15008</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/xxlong0/Wonder3D">xxlong0/Wonder3D</a></li>
+<li><strong>Updates</strong>: Wonder3D++ and Era3D (512x512 with auto focal length) released Dec 2024</li>
+<li><strong>Description</strong>: Cross-domain diffusion for consistent geometry and texture generation. Produces high-detail textured meshes in 2-3 minutes.</li>
+</ul>
+<h4 id="unique3d-high-quality-and-efficient-3d-mesh-generation-from-a-single-image-neurips-2024"><strong>Unique3D: High-Quality and Efficient 3D Mesh Generation from a Single Image</strong> (NeurIPS 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Kailu Wu, et al. (AiuniAI)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2405.20343">arXiv:2405.20343</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/AiuniAI/Unique3D">AiuniAI/Unique3D</a></li>
+<li><strong>Description</strong>: Single-image to mesh in ~30 seconds using diffusion. High-fidelity diverse meshes that work on wild images with good generalization.</li>
+</ul>
+<h4 id="crm-convolutional-reconstruction-model-eccv-2024"><strong>CRM: Convolutional Reconstruction Model</strong> (ECCV 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Zhaoxi Chen, et al. (Tsinghua University)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2403.05034">arXiv:2403.05034</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/thu-ml/CRM">thu-ml/CRM</a></li>
+<li><strong>Description</strong>: Feed-forward architecture generating textured meshes in ~10 seconds. Direct mesh output without intermediate representations. Good balance of speed and quality.</li>
+</ul>
+<h4 id="sith-single-view-textured-human-reconstruction-with-image-conditioned-diffusion-cvpr-2024"><strong>SiTH: Single-view Textured Human Reconstruction with Image-Conditioned Diffusion</strong> (CVPR 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Hsuan-I Ho, et al.</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2311.15855">arXiv:2311.15855</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/SiTH-Diffusion/SiTH">SiTH-Diffusion/SiTH</a></li>
+<li><strong>Description</strong>: Human-specific reconstruction using image-conditioned diffusion. Generates fully textured humans in ~2 minutes with high quality.</li>
+</ul>
+<h4 id="syncdreamer-generating-multiview-consistent-images-from-a-single-view-image-2024"><strong>SyncDreamer: Generating Multiview-Consistent Images from a Single-View Image</strong> (2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Yuan Liu, et al.</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2309.03453">arXiv:2309.03453</a></li>
+<li><strong>Description</strong>: 3D-aware feature attention for multi-view consistent generation. Improves upon zero123 with better consistency across views.</li>
+</ul>
+<h4 id="one-2-3-45-any-single-image-to-3d-mesh-in-45-seconds-neurips-2023"><strong>One-2-3-45: Any Single Image to 3D Mesh in 45 Seconds</strong> (NeurIPS 2023)</h4>
+<ul>
+<li><strong>Authors</strong>: Minghua Liu, et al. (HKUST, NVIDIA)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2306.16928">arXiv:2306.16928</a></li>
+<li><strong>Description</strong>: Fast single-image to 3D in 45 seconds using consistent multi-view generation without per-shape optimization. Quality trade-off for speed.</li>
+</ul>
+<hr />
+<h2 id="monocular-depth-estimation">Monocular Depth Estimation</h2>
+<h3 id="2024-state-of-the-art">2024 State-of-the-Art</h3>
+<h4 id="depth-anything-unleashing-the-power-of-large-scale-unlabeled-data-cvpr-2024"><strong>Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data</strong> (CVPR 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Lihe Yang, et al. (University of Hong Kong, TikTok)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2401.10891">arXiv:2401.10891</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/LiheYoung/Depth-Anything">LiheYoung/Depth-Anything</a></li>
+<li><strong>Model</strong>: <a href="https://huggingface.co/docs/transformers/main/en/model_doc/depth_anything">huggingface.co/depth-anything</a></li>
+<li><strong>Description</strong>: Winner of MDEC CVPR 2024 challenge with 48.8% improvement. Current state-of-the-art for relative depth estimation, trained on massive unlabeled data.</li>
+</ul>
+<h4 id="depth-pro-sharp-monocular-metric-depth-in-less-than-a-second-apple-2024"><strong>Depth Pro: Sharp Monocular Metric Depth in Less Than a Second</strong> (Apple, 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Apple Research</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2410.02073">arXiv:2410.02073</a></li>
+<li><strong>Description</strong>: Ultra-fast (&lt;1 second) metric depth estimation with sharp boundaries. Orders of magnitude faster than variable-resolution methods.</li>
+</ul>
+<h4 id="metric3d-v2-a-versatile-monocular-geometric-foundation-model-2024"><strong>Metric3D v2: A Versatile Monocular Geometric Foundation Model</strong> (2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Wei Yin, et al.</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2404.15506">arXiv:2404.15506</a></li>
+<li><strong>Description</strong>: Rank #1 on multiple benchmarks. Trained on 16M+ images with thousands of camera models. Zero-shot metric depth and surface normals.</li>
+</ul>
+<h4 id="midas-v31-towards-robust-monocular-depth-estimation-2022-2024"><strong>MiDaS v3.1: Towards Robust Monocular Depth Estimation</strong> (2022-2024)</h4>
+<ul>
+<li><strong>Authors</strong>: René Ranftl, et al. (Intel ISL)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/1907.01341">arXiv:1907.01341</a> (original), ongoing updates</li>
+<li><strong>Code</strong>: <a href="https://github.com/isl-org/MiDaS">isl-org/MiDaS</a></li>
+<li><strong>Description</strong>: Robust relative depth estimation with model zoo. Industry-standard baseline used by many newer methods. Well-established and widely supported.</li>
+</ul>
+<h4 id="dpt-vision-transformers-for-dense-prediction-iccv-2021"><strong>DPT: Vision Transformers for Dense Prediction</strong> (ICCV 2021)</h4>
+<ul>
+<li><strong>Authors</strong>: René Ranftl, et al. (Intel ISL)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2103.13413">arXiv:2103.13413</a></li>
+<li><strong>Description</strong>: Transformer-based dense prediction achieving superior accuracy metrics. Better geometric consistency than many alternatives, part of MiDaS model zoo.</li>
+</ul>
+<hr />
+<h2 id="multi-view-stereo-and-matching">Multi-View Stereo and Matching</h2>
+<h3 id="2024_3">2024</h3>
+<h4 id="dust3r-geometric-3d-vision-made-easy-cvpr-2024"><strong>DUSt3R: Geometric 3D Vision Made Easy</strong> (CVPR 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Shuzhe Wang, et al. (Naver Labs Europe)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2312.14132">arXiv:2312.14132</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/naver/dust3r">naver/dust3r</a></li>
+<li><strong>Description</strong>: Dense unconstrained stereo reconstruction without camera parameters. Foundational model approach that handles unconstrained images for 3D reconstruction.</li>
+</ul>
+<h4 id="mast3r-matching-and-stereo-3d-reconstruction-eccv-2024"><strong>MASt3R: Matching and Stereo 3D Reconstruction</strong> (ECCV 2024)</h4>
+<ul>
+<li><strong>Authors</strong>: Vincent Leroy, et al. (Naver Labs Europe)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2406.09756">arXiv:2406.09756</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/naver/mast3r">naver/mast3r</a></li>
+<li><strong>Description</strong>: Built on DUSt3R with dense local features. 30% improvement on challenging datasets. State-of-the-art for matching and metric 3D reconstruction.</li>
+</ul>
+<hr />
+<h2 id="human-specific-reconstruction">Human-Specific Reconstruction</h2>
+<h3 id="2019-2020">2019-2020</h3>
+<h4 id="pifu-pixel-aligned-implicit-function-for-high-resolution-clothed-human-digitization-iccv-2019"><strong>PIFu: Pixel-Aligned Implicit Function for High-Resolution Clothed Human Digitization</strong> (ICCV 2019)</h4>
+<ul>
+<li><strong>Authors</strong>: Shunsuke Saito, et al. (Meta Reality Labs)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/1905.05172">arXiv:1905.05172</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/shunsukesaito/PIFu">shunsukesaito/PIFu</a></li>
+<li><strong>Description</strong>: Pixel-aligned implicit function for high-resolution human digitization. Foundational work for human reconstruction from single images.</li>
+</ul>
+<h4 id="pifuhd-multi-level-pixel-aligned-implicit-function-for-high-resolution-3d-human-digitization-cvpr-2020"><strong>PIFuHD: Multi-Level Pixel-Aligned Implicit Function for High-Resolution 3D Human Digitization</strong> (CVPR 2020)</h4>
+<ul>
+<li><strong>Authors</strong>: Shunsuke Saito, et al. (Meta Reality Labs)</li>
+<li><strong>Paper</strong>: <a href="https://arxiv.org/abs/2004.00452">arXiv:2004.00452</a></li>
+<li><strong>Code</strong>: <a href="https://github.com/facebookresearch/pifuhd">facebookresearch/pifuhd</a></li>
+<li><strong>Description</strong>: Multi-level architecture (coarse + fine) for high-resolution clothed human reconstruction. No segmentation mask required. Industry standard for human avatars.</li>
+</ul>
+<hr />
+<h2 id="recommended-resources">Recommended Resources</h2>
+<h3 id="frameworks-and-tools">Frameworks and Tools</h3>
+<ul>
+<li><strong>NeRF Studio</strong>: <a href="https://docs.nerf.studio/">docs.nerf.studio</a> - Complete NeRF development framework</li>
+<li><strong>threestudio</strong>: <a href="https://github.com/threestudio-project/threestudio">threestudio-project/threestudio</a> - Unified framework for 3D generation</li>
+<li><strong>Nerfacc</strong>: <a href="https://www.nerfacc.com/">nerfacc</a> - Efficient NeRF acceleration library</li>
+</ul>
+<h3 id="datasets">Datasets</h3>
+<ul>
+<li><strong>Objaverse</strong>: <a href="https://objaverse.allenai.org/">allenai/objaverse</a> - 1M+ 3D objects</li>
+<li><strong>MVImgNet</strong>: Multi-view images for training</li>
+<li><strong>ScanNet++</strong>: High-quality indoor scene scans</li>
+<li><strong>CO3Dv2</strong>: Common Objects in 3D version 2</li>
+</ul>
+<h3 id="benchmarks-and-challenges">Benchmarks and Challenges</h3>
+<ul>
+<li><strong>MDEC Challenge (CVPR 2024)</strong>: Monocular Depth Estimation Challenge</li>
+<li><strong>NeRF Synthetic</strong>: Standard NeRF benchmark scenes</li>
+<li><strong>Mip-NeRF 360 Dataset</strong>: Unbounded scene evaluation</li>
+</ul>
+<hr />
+<h2 id="latest-trends-2024-2025">Latest Trends (2024-2025)</h2>
+<ol>
+<li><strong>Feed-Forward Models</strong>: Shift from per-scene optimization to single-pass inference</li>
+<li><strong>Gaussian Splatting Dominance</strong>: Replacing NeRF for real-time applications</li>
+<li><strong>Transformer Architectures</strong>: Large reconstruction models (LRM) with 500M+ parameters</li>
+<li><strong>Diffusion Integration</strong>: Combining 2D diffusion priors with 3D representations</li>
+<li><strong>Multi-View Consistency</strong>: Better view-consistent generation (MVDream, SyncDreamer)</li>
+<li><strong>Foundation Models</strong>: Training on millions of objects for generalization</li>
+<li><strong>Hybrid Representations</strong>: Combining strengths of NeRF, Gaussians, and meshes</li>
+<li><strong>Camera-Free Reconstruction</strong>: DUSt3R/MASt3R eliminate need for camera parameters</li>
+</ol>
+<hr />
+<p><em>Last updated: November 2024</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
