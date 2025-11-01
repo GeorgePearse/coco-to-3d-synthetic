@@ -1,0 +1,66 @@
+site_name: COCO to 3D Synthetic Pipeline
+site_description: Pipeline for converting COCO instance annotations to 3D models and generating synthetic images
+site_author: George Pearse
+site_url: https://georgepearse.github.io/coco-to-3d-synthetic/
+
+repo_name: GeorgePearse/coco-to-3d-synthetic
+repo_url: https://github.com/GeorgePearse/coco-to-3d-synthetic
+
+theme:
+  name: material
+  palette:
+    # Light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quickstart.md
+  - Pipeline:
+    - Overview: pipeline/overview.md
+    - COCO Processing: pipeline/coco-processing.md
+    - 3D Generation: pipeline/3d-generation.md
+    - Synthetic Rendering: pipeline/synthetic-rendering.md
+  - API Reference:
+    - COCO Processing: api/coco-processing.md
+    - 3D Generation: api/3d-generation.md
+    - Synthetic Rendering: api/synthetic-rendering.md
+  - Examples: examples.md
+  - Contributing: contributing.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
