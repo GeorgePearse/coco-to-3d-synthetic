@@ -1,11 +1,21 @@
 numpy>=1.21.0
-torch>=2.0.0
-torchvision>=0.15.0
+torch>=2.1.2
+torchvision>=0.16.0
 opencv-python>=4.8.0
 pycocotools>=2.0.0
 Pillow>=9.0.0
 matplotlib>=3.5.0
 tqdm>=4.65.0
+
+# 3D Generation (OpenLRM dependencies)
+transformers>=4.35.0
+safetensors>=0.4.0
+accelerate>=0.24.0
+trimesh>=4.0.0
+PyMCubes>=0.1.4
+imageio[ffmpeg]>=2.31.0
+rembg[gpu]>=2.0.50
+omegaconf>=2.3.0
 
 # Documentation
 mkdocs>=1.5.0

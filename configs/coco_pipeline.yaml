@@ -1,0 +1,66 @@
+# COCO to 3D Pipeline Configuration
+# Complete end-to-end pipeline settings
+
+# COCO Processing
+coco_processing:
+  # Dataset paths
+  annotation_file: "data/coco/annotations.json"
+  image_dir: "data/coco/images"
+
+  # Preprocessing settings
+  target_size: 512  # Output image size (512 recommended for OpenLRM)
+  padding_percent: 0.1  # Padding around object (10%)
+  apply_background_removal: false  # Use rembg (slower but better quality)
+
+  # Filtering
+  min_area: 1000  # Minimum object area (pixels)
+  categories:  # Categories to process (null = all)
+    - car
+    - bicycle
+    - motorcycle
+    - truck
+    - bus
+
+# OpenLRM 3D Generation
+openlrm:
+  # Model configuration
+  model_size: base  # small, base, or large
+  model_variant: mix  # mix (recommended) or obj
+
+  # Generation settings
+  camera_distance: 2.0  # 1.0-3.5, default 2.0
+  export_video: true  # Generate rotation video
+  export_mesh: true  # Generate 3D mesh
+
+  # GPU settings
+  device: cuda  # cuda or cpu
+
+# Mesh Processing
+mesh_processing:
+  # Cleaning
+  clean_mesh: true
+  merge_vertices: true
+  remove_degenerate: true
+  fix_normals: true
+
+  # Simplification (optional)
+  simplify: false
+  target_faces: 10000  # Target polygon count
+
+  # Export formats
+  export_formats:
+    - ply
+    - obj
+    - glb
+
+# Output Configuration
+output:
+  base_dir: "output"
+  create_subdirs: true  # Create subdirectory per image
+  save_metadata: true  # Save processing metadata JSON
+
+# Batch Processing
+batch:
+  max_images: null  # null = process all
+  parallel_workers: 1  # Number of parallel workers (GPU limited)
+  continue_on_error: true  # Continue if individual image fails

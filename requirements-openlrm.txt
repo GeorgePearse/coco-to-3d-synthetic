@@ -1,0 +1,41 @@
+# Full OpenLRM dependencies
+# Install with: pip install -r requirements-openlrm.txt
+
+# Core dependencies
+torch>=2.1.2
+torchvision>=0.16.0
+xformers>=0.0.22  # Memory-efficient attention (CRITICAL for OpenLRM)
+
+# Model and training
+transformers>=4.35.0
+safetensors>=0.4.0
+accelerate>=0.24.0
+omegaconf>=2.3.0
+
+# 3D processing
+trimesh>=4.0.0
+PyMCubes>=0.1.4
+
+# Image processing
+Pillow>=9.0.0
+opencv-python>=4.8.0
+imageio[ffmpeg]>=2.31.0
+rembg[gpu]>=2.0.50
+
+# Utilities
+tqdm>=4.65.0
+numpy>=1.21.0
+
+# Metrics and visualization
+lpips>=0.1.4
+tensorboard>=2.14.0
+
+# File operations
+megfile>=1.1.1
+httpx[socks]>=0.25.0
+
+# Optimization (optional)
+optimum[onnxruntime-gpu]>=1.14.0
+
+# Note: Install xformers separately if needed:
+# pip install xformers --index-url https://download.pytorch.org/whl/cu118
